@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Server Report</title>
+        <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    </head>
+<body>
+    <h1>Server Report</h1>
+
+    <h2>Running Processes</h2>
+    <pre id="processes"></pre>
+
+    <h2>PM2 Apps</h2>
+    <pre id="pm2"></pre>
+
+    <h2>Used Ports</h2>
+    <pre id="ports"></pre>
+
+    <h2>Memory Status</h2>
+    <pre id="memory"></pre>
+
+    <h2>CPU Status</h2>
+    <pre id="cpu"></pre>
+
+    <!-- Botón para actualizar los datos -->
+    <button id="updateButton">Actualizar datos</button>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <!-- Script para manejar la actualización de datos -->
+    <script>
+        // Función para actualizar los datos
+        async function updateData() {
+            try {
+                // Realizar una solicitud al servidor para obtener los datos actualizados
+                const response = await fetch('http://127.0.0.1:3010/api/report');
+                const data = await response.json();
+
+                // Actualizar el contenido de la página con los nuevos datos
+                document.getElementById('processes').textContent = data.processes;
+                document.getElementById('pm2').textContent = data.pm2;
+                document.getElementById('ports').textContent = data.ports;
+                document.getElementById('memory').textContent = data.memory;
+                document.getElementById('cpu').textContent = data.cpu;
+            } catch (error) {
+                console.error('Error al actualizar los datos:', error);
+            }
+        }
+
+        // Asociar la función de actualización de datos al evento click del botón
+        document.getElementById('updateButton').addEventListener('click', updateData);
+
+        // Actualizar los datos al cargar la página por primera vez
+        updateData();
+    </script>
+</body>
+</html>
