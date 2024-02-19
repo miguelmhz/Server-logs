@@ -35,7 +35,7 @@
         async function updateData() {
             try {
                 // Realizar una solicitud al servidor para obtener los datos actualizados
-                const response = await fetch('http://127.0.0.1:3010/api/report');
+                const response = await fetch('https://mhc.ipicyt.edu.mx/youiapp/server/api/report');
                 const data = await response.json();
 
                 // Actualizar el contenido de la página con los nuevos datos
