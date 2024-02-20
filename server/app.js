@@ -1,7 +1,13 @@
 const express = require('express');
-const app = express();
 const { exec } = require('child_process');
+const cors = require('cors');
 const fs = require('fs');
+
+const app = express();
+app.use(cors());
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(express.json()); 
+
 
 // Función para ejecutar un comando del sistema y retornar una promesa con su salida
 const executeCommand = (command) => {
