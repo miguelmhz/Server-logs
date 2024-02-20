@@ -1,31 +1,81 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Server Report</title>
-        <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-    </head>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Server Report</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        /* Agrega estilos personalizados aquí si lo necesitas */
+        body {
+            background-color: #f8f9fa;
+            /* Cambia el color de fondo según sea necesario */
+        }
+
+        .report-container {
+            margin-top: 50px;
+        }
+
+        .card {
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+
 <body>
-    <h1>Server Report</h1>
+    <div class="container report-container mb-4">
 
-    <h2>Running Processes</h2>
-    <pre id="processes"></pre>
+        <h1 class="mb-4">Server Report</h1>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Running Processes</h5>
+                        <pre id="processes"></pre>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">PM2 Apps</h5>
+                        <pre id="pm2"></pre>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Used Ports</h5>
+                        <pre id="ports"></pre>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Memory Status</h5>
+                        <pre id="memory"></pre>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">CPU Status</h5>
+                        <pre id="cpu"></pre>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
 
-    <h2>PM2 Apps</h2>
-    <pre id="pm2"></pre>
+        <!-- Botón para actualizar los datos -->
+        <button class="btn btn-secundary" id="updateButton">Actualizar datos</button>
 
-    <h2>Used Ports</h2>
-    <pre id="ports"></pre>
+    </div>
 
-    <h2>Memory Status</h2>
-    <pre id="memory"></pre>
-
-    <h2>CPU Status</h2>
-    <pre id="cpu"></pre>
-
-    <!-- Botón para actualizar los datos -->
-    <button id="updateButton">Actualizar datos</button>
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
@@ -35,10 +85,10 @@
         async function updateData() {
             try {
                 // Realizar una solicitud al servidor para obtener los datos actualizados
-                const response = await fetch('https://mhc.ipicyt.edu.mx/youiapp/server/api/report');
-                console.log({response})
+                const response = await fetch('https://mhc.ipicyt.edu.mx/server/api/report');
+                console.log({ response })
                 const data = await response.json();
-                console.log({data})
+                console.log({ data })
                 // Actualizar el contenido de la página con los nuevos datos
                 document.getElementById('processes').textContent = data.processes;
                 document.getElementById('pm2').textContent = data.pm2;
@@ -57,4 +107,5 @@
         updateData();
     </script>
 </body>
+
 </html>
