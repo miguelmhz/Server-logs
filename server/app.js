@@ -61,7 +61,7 @@ app.get('/hi',(req, res)=> {
   })
 })
 // Iniciar el servidor en el puerto 3000
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 3002;
 app.listen(PORT, () => {
     console.log(`Servidor escuchando en el puerto ${PORT}`);
 });
