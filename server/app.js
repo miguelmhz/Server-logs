@@ -25,7 +25,7 @@ const executeCommand = (command) => {
   
 
 // Ruta para obtener el informe del servidor
-app.get('/server/api/report', async (req, res) => {
+app.get('/api/report', async (req, res) => {
   try {
     // Obtener la lista de procesos en ejecución
     const psOutput = await executeCommand('ps aux');
@@ -53,7 +53,7 @@ app.get('/server/api/report', async (req, res) => {
     console.error('Error generating server report:', error);
   }
 });
-app.get('/server/hi',(req, res)=> {
+app.get('/hi',(req, res)=> {
   res.json({
       ok:true,
   })
