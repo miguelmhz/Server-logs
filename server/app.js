@@ -1,6 +1,8 @@
 const express = require('express');
 const { exec } = require('child_process');
 const cors = require('cors');
+const bodyParser = require('body-parser')
+
 const fs = require('fs');
 
 const app = express();
@@ -59,7 +61,7 @@ app.get('/hi',(req, res)=> {
   })
 })
 // Iniciar el servidor en el puerto 3000
-const PORT = process.env.PORT || 3002;
+const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
     console.log(`Servidor escuchando en el puerto ${PORT}`);
 });
