@@ -47,7 +47,7 @@ app.get('/server/api/report', async (req, res) => {
     console.error('Error generating server report:', error);
   }
 });
-app.get('/hi',(req, res)=> {
+app.get('/server/hi',(req, res)=> {
   res.json({
       ok:true,
   })
