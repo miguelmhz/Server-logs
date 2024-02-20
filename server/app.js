@@ -19,7 +19,7 @@ const executeCommand = (command) => {
   
 
 // Ruta para obtener el informe del servidor
-app.get('/api/report',async (req, res) => {
+app.get('/server/api/report', async (req, res) => {
   try {
     // Obtener la lista de procesos en ejecución
     const psOutput = await executeCommand('ps aux');
